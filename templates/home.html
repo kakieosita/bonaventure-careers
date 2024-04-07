@@ -10,14 +10,18 @@
     height: 360px;
     width: 100%;
     object-fit: cover;
+    margin-bottom: 16px;
     }
 </style>
 </head>
 <body>
+{% include 'nav.html' %}
+<img class="img-fluid" id= "banner" src="static/banner.jpg" />
 <div class="container">
     <h1 class="text-center mt-2 mb-4">Bonaventure Careers</h1>
-<img class="img-fluid" id= "banner" src="static/banner.jpg" />
-<h2 class="text-center mt-2 mb-4">About Bonaventure</h2>
+
+<div class ="row" style="margin-bottom:16px;">
+    <div class="col-md-6">
 <p class="lead">Lorem ipsum dolor, sit amet consectetur adipisicing elit.
     Obcaecati harum dolorum, repellendus nisi esse aliquid ex earum animi velit fugiat explicabo sequi
     illum fuga reprehenderit autem officia nam tempore amet.
@@ -25,6 +29,11 @@
     Obcaecati harum dolorum, repellendus nisi esse aliquid ex earum animi velit fugiat explicabo sequi
     illum fuga reprehenderit autem officia nam tempore amet.
 </p>
+    </div>
+    <div class="d-none d-md-block  col-6">
+    <img src="/static/people.jpg" style="height:320px; border-radius:4px;"/>
+        </div>
+    </div>
 <h2 class="text-center mt-2 mb-4">Open Positions</h2>
 <div>
     {% for job in jobs %}
@@ -37,10 +46,11 @@
 
     <div class="text-center">
 
-        <button class="btn btn-primary btn-lg">Contact Us</button>
-        <p class="mt-4">Copyright 2024, Bonaventure</p>
+        <a href="mailto:kakieosita@gmail.com?subject=Question%20about%20Job%20Openings&body=My%20name%3A%20%3Center%20your%20name%20here%3E%0D%0AMy%20Questions%3A%20%3Center%20your%20question%20here%3E" class="btn btn-primary btn-lg">Contact Us</a>
+
         </div>
     </div>
+{% include 'footer.html' %}
 </body>
 
 </html>
