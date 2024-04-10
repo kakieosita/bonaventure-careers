@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Application Submitted</title>
+    {% include 'bootstrap.html' %}
+</head>
+<body>
+{% include 'nav.html' %}
+
+<div class="container">
+    <h1 class="text-center mt-2 mb-4">Bonaventure Careers</h1>
+
+    <p>Your application for the role of <b>{{job['title']}}</b> at Bonaventure has been submitted</p>
+
+    <b>Full Name</b>
+<div>{{application['full_name']}}</div>
+
+<b>Email</b>
+<div>{{application['email']}}</div>
+
+<b>LinkedIn Url</b>
+<div>{{application['linkedin_url']}}</div>
+
+<b>Education</b>
+<div>{{application['education']}}</div>
+
+<b>Work Experience</b>
+<div>{{application['work_experience']}}</div>
+
+<b>Resume URL</b>
+<div>{{application['resume_url']}}</div>
+</div>
+
+{% include 'footer.html' %}
+</body>
+</html>

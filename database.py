@@ -1,4 +1,5 @@
 from sqlalchemy import create_engine, text
+from sqlalchemy.exc import SQLAlchemyError
 import os
 
 from dotenv import load_dotenv
@@ -45,3 +46,43 @@ def load_job_from_db(id):
             return job
 
 
+# def add_application_to_db(job_id, data):
+#     with engine.connect() as conn:
+#         query = text("INSERT INTO applications (job_id, full_name, email, linkedin_url, education, work_experience, "
+#                      "resume_url) VALUES (:job_id, :full_name, :email, :linkedin_url, :education, :work_experience, "
+#                      ":resume_url)")
+#
+#         conn.execute(query, {
+#             'job_id': job_id,
+#             'full_name': data['full_name'],
+#             'email': data['email'],
+#             'linkedin_url': data['linkedin_url'],
+#             'education': data['education'],
+#             'work_experience': data['work_experience'],
+#             'resume_url': data['resume_url']
+#         })
+
+def add_application_to_db(job_id, data):
+    with engine.connect() as conn:
+        query = text("""
+            INSERT INTO applications 
+            (job_id, full_name, email, linkedin_url, education, work_experience, resume_url) 
+            VALUES 
+            (:job_id, :full_name, :email, :linkedin_url, :education, :work_experience, :resume_url)
+        """)
+        try:
+            conn.execute(query, {
+                'job_id': job_id,
+                'full_name': data['full_name'],
+                'email': data['email'],
+                'linkedin_url': data['linkedin_url'],
+                'education': data['education'],
+                'work_experience': data['work_experience'],
+                'resume_url': data['resume_url']
+            })
+            # Commit the transaction
+            conn.commit()
+        except SQLAlchemyError as e:
+            # Rollback the transaction in case of an error
+            conn.rollback()
+            print(f"Error inserting data: {e}")
